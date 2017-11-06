@@ -1,0 +1,78 @@
+@charset "utf-8"; 
+*{ margin:0px; padding:0px; text-decoration:none; box-sizing:border-box; font-size:.14rem; font-style:normal; font-weight:normal; font-family:"黑体"; } 
+ul,li{ list-style:none; } 
+html{ -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; font-size:625%; } 
+img,div,body,html,ul,li,a{ -webkit-touch-callout: none; } 
+input,button{ outline:0; } 
+button{ cursor:pointer; } 
+input::-webkit-input-placeholder,textarea::-webkit-input-placeholder { color: #ccc;}
+$num:100%;
+%full{width:$num;height:$num;}
+@mixin nums($h:auto){width:$num;height:$h;}
+@mixin flex($j:space-between){display:flex;justify-content:$j;align-items:center;}
+html,body{@extend %full;}
+.wrap{
+	@extend %full;
+	@include flex();
+	flex-direction:column;
+	overflow:hidden;
+}
+header{
+    @include nums($h:.5rem);
+    @include flex();
+    padding:0 .1rem;
+    border-bottom: solid 1px #ccc;
+    a{
+       text-align: left;
+       color:#000;
+    }
+    a:nth-child(2){
+        color:red;
+        font-size:16px;
+        font-weight:bold;
+    }
+}
+main{
+    flex:1;
+    @include nums();
+    overflow-y: scroll;
+    nav{
+        @include nums($h:.8rem);
+        @include flex();
+        padding:0 .1rem;
+        border-bottom:solid 5px #ccc;
+        a{
+            @include flex();
+            flex-direction: column;
+            color:#000;
+        }
+    }
+    content{
+        @include nums();
+        @include flex();
+        a{
+            flex:1;
+            @include flex();
+            flex-direction: column;
+            color:#000;
+            line-height:.4rem;
+            border-right:solid 1px #ccc; 
+            border-bottom: solid 1px #ccc;
+        }
+    }
+}
+footer{
+    @include nums($h:.5rem);
+    @include flex();
+    border-top: solid 1px #ccc;
+    a{
+        flex:1;
+        text-align: center;
+        @include flex();
+        flex-direction: column;
+        color:#666;
+    }
+    a:nth-child(1){
+        color:red;
+    }
+}

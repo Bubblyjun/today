@@ -1,0 +1,49 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><title>Document</title><link rel="stylesheet" href="css/style.css"><link rel="stylesheet" href="fonts2/iconfont.css"></head><body><div class="wrap"><header></header><main><nav></nav><content></content></main><footer></footer></div><script src="js/jquery-1.8.3.min.js"></script><script>$.ajax({
+			url:'data.json',
+			type:'get',
+			async:true,
+			dataType:'json',
+			success:function(data){
+				$.each(data.total,function(i,val){
+					var str = '',str1='',str2='',str3='';
+					$.each(val,function(key){
+                        if(key=='headers'){
+                            for(var i=0;i<val[key].length;i++){
+                                str+=`
+                                    <a href="#">${val[key][i].one}</a>
+                                `;
+                            }
+                        }else if(key=='footers'){
+                            for(var i=0;i<val[key].length;i++){
+                                str1+=`<a href="#">
+                                    <i class="icon iconfont icon-zanting"></i>
+                                    <span>${val[key][i].one}</span></a>
+                                `;
+                            }
+                        }else if(key=='mains'){
+                            for(var i=0;i<val[key].length;i++){
+                                str2+=`<a href="#">
+                                    <i class="icon iconfont icon-zanting"></i>
+                                    <span>${val[key][i].one}</span></a>
+                                `;
+                            }
+                        }else if(key=='mainss'){
+                            for(var i=0;i<val[key].length;i++){
+                                str3+=`<a href="#">
+                                    <i class="icon iconfont icon-zanting"></i>
+                                    <span>${val[key][i].one}</span></a>
+                                `;
+                            }
+                        }
+					})
+                    $(str).appendTo($('header'));
+                    $(str1).appendTo($('footer'));
+                    $(str2).appendTo($('main nav'));
+                    $(str3).appendTo($('main content'));
+                })
+                $('header a').eq(0).append('<i class="icon iconfont icon-xiangxia"></i>')   
+			},
+			error:function(){
+				alert('数据获取失败，请重新加载')
+			}
+		})</script></body></html>
